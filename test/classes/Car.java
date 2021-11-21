@@ -6,6 +6,7 @@
 package classes;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -19,4 +20,5 @@ public class Car {
     public int numberOfDoors;
     public List<String> previousOwners;
     public List<Long> previousPrices;
+    public UUID globalIdentifier;
 }

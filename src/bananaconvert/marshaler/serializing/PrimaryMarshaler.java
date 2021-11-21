@@ -25,6 +25,7 @@ public class PrimaryMarshaler<K> extends Marshaler<K> {
         availableMarshalers = new Marshaler[]{
             new PrimitiveMarshaler(),
             new ListMarshaler(this),
+            new UUIDMarshaler(),
             this
         };
     }
@@ -42,7 +43,7 @@ public class PrimaryMarshaler<K> extends Marshaler<K> {
         if (object == null) {
             return null;
         }
-        
+
         Field[] fields = object.getClass().getFields();
         JSONObject output = new JSONObject();
 

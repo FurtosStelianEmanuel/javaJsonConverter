@@ -13,6 +13,7 @@ import classes.Piston;
 import classes.TemperatureCharacteristics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -60,6 +61,8 @@ public class SerializingTest {
         toReturn.numberOfDoors = (int) Long.parseLong(jsonObject.get("numberOfDoors").toString());
         toReturn.previousOwners = (List<String>) jsonObject.get("previousOwners");
         toReturn.previousPrices = (List<Long>) jsonObject.get("previousPrices");
+        toReturn.globalIdentifier = buildCarGlobalIdentifier((String) jsonObject.get("globalIdentifier"));
+
         JSONObject engine = (JSONObject) jsonObject.get("engine");
         toReturn.engine = new Engine() {
             {
@@ -72,6 +75,14 @@ public class SerializingTest {
         };
 
         return toReturn;
+    }
+
+    private UUID buildCarGlobalIdentifier(String uuid) {
+        if (uuid == null) {
+            return null;
+        }
+
+        return UUID.fromString(uuid);
     }
 
     private List<Piston> buildPistons(JSONObject engine) {

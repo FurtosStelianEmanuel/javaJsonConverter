@@ -9,6 +9,7 @@ import classes.Car;
 import classes.Engine;
 import classes.Piston;
 import classes.TemperatureCharacteristics;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -50,6 +51,7 @@ public class ModelBank {
             numberOfDoors = 5;
             previousOwners = Stream.of("Emanoil Firtes").collect(Collectors.toList());
             previousPrices = Stream.of(100l, 50l, 20l, 5l).collect(Collectors.toList());
+            globalIdentifier = UUID.fromString("5f7b8de2-1af2-4331-b51c-768fd5f30896");
         }
     };
 
@@ -88,6 +90,7 @@ public class ModelBank {
             numberOfDoors = 5;
             previousOwners = Stream.of("Emanoil Firtes", null).collect(Collectors.toList());
             previousPrices = null;
+            globalIdentifier = null;
         }
     };
 }

@@ -22,7 +22,8 @@ public class CarAsserts {
         assertEquals(expected.manufacturerName, actual.manufacturerName);
         assertEquals(expected.fuelType, actual.fuelType);
         assertEquals(expected.numberOfDoors, actual.numberOfDoors);
-
+        assertEquals(expected.globalIdentifier, actual.globalIdentifier);
+        
         assertEngine(expected.engine, actual.engine);
         assertPreviousOwners(expected.previousOwners, actual.previousOwners);
         assertPreviousPrices(expected.previousPrices, actual.previousPrices);

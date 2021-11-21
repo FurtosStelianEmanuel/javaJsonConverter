@@ -58,6 +58,7 @@ public class DeserializingTest {
                 + "        ]\n"
                 + "    },\n"
                 + "    \"manufacturerName\": \"Dacia\",\n"
+                + "    \"globalIdentifier\": \"5f7b8de2-1af2-4331-b51c-768fd5f30896\",\n"
                 + "    \"fuelType\": \"gasoline\",\n"
                 + "    \"numberOfDoors\": 5,\n"
                 + "    \"previousOwners\": [\n"
@@ -109,7 +110,8 @@ public class DeserializingTest {
                 + "        null\n"
                 + "    ],\n"
                 + "    \"manufacturerName\": \"Dacia\",\n"
-                + "    \"numberOfDoors\": 5\n"
+                + "    \"numberOfDoors\": 5,\n"
+                + "    \"globalIdentifier\": null\n"
                 + "}", ModelBank.CAR_WITH_NULL_VALUES);
     }
 
