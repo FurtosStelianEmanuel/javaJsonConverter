@@ -9,9 +9,13 @@ package bananaconvert.marshaler.exception;
  *
  * @author Manel
  */
-public class DeserializationException extends BananaException {
+public class SerializationException extends BananaException {
 
-    public DeserializationException(Exception rootException) {
+    public SerializationException(String message) {
+        super(message);
+    }
+
+    public SerializationException(Exception rootException) {
         super(rootException);
     }
 }

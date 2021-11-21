@@ -6,7 +6,7 @@
 package bananaconvert.marshaler.deserializing;
 
 import bananaconvert.marshaler.Marshaler;
-import bananaconvert.marshaler.exception.MarshallingFailed;
+import bananaconvert.marshaler.exception.DeserializationException;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class UUIDMarshaler extends Marshaler<UUID> {
 
     @Override
-    public void marshal(Object input, Field output, Object instance) throws MarshallingFailed {
+    public void marshal(Object input, Field output, Object instance) throws DeserializationException {
         if (input == null) {
             super.marshal(null, output, instance);
             return;

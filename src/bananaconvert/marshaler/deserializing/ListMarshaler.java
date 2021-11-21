@@ -6,6 +6,7 @@
 package bananaconvert.marshaler.deserializing;
 
 import bananaconvert.marshaler.Marshaler;
+import bananaconvert.marshaler.exception.DeserializationException;
 import bananaconvert.marshaler.exception.MarshallingFailed;
 import bananaconvert.marshaler.exception.NoMatchingMarshalerFound;
 import java.lang.reflect.Field;
@@ -13,8 +14,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -23,7 +22,7 @@ import org.json.simple.JSONObject;
  * @author Manel
  * @param <K>
  */
-public class ListMarshaler<K> extends Marshaler<K[]> {
+public class ListMarshaler<K> extends Marshaler<List<K>> {
 
     private final PrimaryMarshaler primaryMarshaler;
 
@@ -32,10 +31,9 @@ public class ListMarshaler<K> extends Marshaler<K[]> {
     }
 
     @Override
-    public void marshal(Object input, Field output, Object instance) throws MarshallingFailed {
-
-        if (isFieldOfPrimitives(output)) {
-            deserializePrimitives(input, output, instance);
+    public void marshal(Object input, Field output, Object instance) throws DeserializationException {
+        if (isListOfPrimitives(output)) {
+            deserializeListOfPrimitives(input, output, instance);
             return;
         }
 
@@ -47,7 +45,7 @@ public class ListMarshaler<K> extends Marshaler<K[]> {
         return type.equals(List.class);
     }
 
-    private void deserializePrimitives(Object input, Field output, Object instance) throws MarshallingFailed {
+    private void deserializeListOfPrimitives(Object input, Field output, Object instance) throws DeserializationException {
         JSONArray array = (JSONArray) input;
         List<K> outputArray = new ArrayList<>();
 
@@ -59,7 +57,7 @@ public class ListMarshaler<K> extends Marshaler<K[]> {
         super.marshal(outputArray, output, instance);
     }
 
-    private void deserializeObjects(Object input, Field output, Object instance) throws MarshallingFailed {
+    private void deserializeObjects(Object input, Field output, Object instance) throws DeserializationException {
         JSONArray array = (JSONArray) input;
         List<K> outputArray = new ArrayList<>();
 
@@ -68,16 +66,17 @@ public class ListMarshaler<K> extends Marshaler<K[]> {
             try {
                 outputArray.add((K) primaryMarshaler.deserialize((JSONObject) object, getListType(output)));
             } catch (NoSuchFieldException | NoSuchMethodException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoMatchingMarshalerFound | MarshallingFailed ex) {
-                throw new MarshallingFailed(ex);
+                throw new DeserializationException(ex);
             }
         }
 
         super.marshal(outputArray, output, instance);
     }
 
-    private boolean isFieldOfPrimitives(Field field) {
+    private boolean isListOfPrimitives(Field field) {
         Class listType = getListType(field);
-        return listType.equals(Long.class) || listType.equals(Integer.class);
+
+        return listType.equals(Long.class) || listType.equals(Integer.class) || listType.equals(String.class);
     }
 
     private Class getListType(Field field) {

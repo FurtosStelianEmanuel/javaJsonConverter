@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bananaconvert.marshaler.exception;
+package classes;
 
 /**
  *
  * @author Manel
  */
-public class DeserializationException extends BananaException {
+public class Piston {
 
-    public DeserializationException(Exception rootException) {
-        super(rootException);
-    }
+    public int bore, stroke;
+    public String index;
+    public double valveClearence;
+    public TemperatureCharacteristics temperatureCharacteristics;
 }

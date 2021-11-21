@@ -6,7 +6,7 @@
 package bananaconvert.marshaler.deserializing;
 
 import bananaconvert.marshaler.Marshaler;
-import bananaconvert.marshaler.exception.MarshallingFailed;
+import bananaconvert.marshaler.exception.DeserializationException;
 import java.lang.reflect.Field;
 
 /**
@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 public class StringMarshaler extends Marshaler<String> {
 
     @Override
-    public void marshal(Object input, Field output, Object instance) throws MarshallingFailed {
-        super.marshal(input.toString(), output, instance);
+    public void marshal(Object input, Field output, Object instance) throws DeserializationException {
+        super.marshal((String) input, output, instance);
     }
 }

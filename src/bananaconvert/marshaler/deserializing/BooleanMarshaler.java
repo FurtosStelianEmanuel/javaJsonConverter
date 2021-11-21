@@ -13,20 +13,21 @@ import java.lang.reflect.Field;
  *
  * @author Manel
  */
-public class IntegerMarshaler extends Marshaler<Integer> {
+public class BooleanMarshaler extends Marshaler<Boolean> {
 
     @Override
     public void marshal(Object input, Field output, Object instance) throws DeserializationException {
         if (input == null) {
-            super.marshal(0, output, instance);
             return;
         }
 
-        super.marshal((int) Long.parseLong(input.toString()), output, instance);
+        boolean result = input.toString().toLowerCase().equals("true") || input.toString().toLowerCase().equals("yes");
+
+        super.marshal(result, output, instance);
     }
 
     @Override
     public boolean canProcessType(Class type) {
-        return type == int.class || super.canProcessType(type);
+        return type == boolean.class || super.canProcessType(type);
     }
 }
