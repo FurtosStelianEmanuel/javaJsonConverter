@@ -34,16 +34,19 @@ public class ModelBank {
                             index = "PP01";
                             valveClearence = 1.05;
                             temperatureCharacteristics = new TemperatureCharacteristics(90.05, 120.55, -45.566, "Celsius");
+                            partId = UUID.fromString("9c90ef47-d7b9-402b-87e0-43a6b3462ca8");
                         }
                     },
                             new Piston() {
                         {
+                            partId = UUID.fromString("793d1c18-787c-4520-ac44-97bb95b29f3f");
                             bore = stroke = 2;
                             index = "PP02";
                             valveClearence = 1.05;
                             temperatureCharacteristics = new TemperatureCharacteristics(90.05, 120.55, -45.566, "Celsius");
                         }
                     }).collect(Collectors.toList());
+                    partId = UUID.fromString("b0a071d2-324f-453c-81f7-655a6aba90c1");
                 }
             };
             manufacturerName = "Dacia";
@@ -59,6 +62,7 @@ public class ModelBank {
         {
             engine = new Engine() {
                 {
+                    partId = null; //intentional
                     modelNumber = 12344;
                     hasVvt = true;
                     hasInterference = false;
@@ -66,6 +70,7 @@ public class ModelBank {
                     pistons = Stream.of(
                             new Piston() {
                         {
+                            partId = UUID.fromString("9c90ef47-d7b9-402b-87e0-43a6b3462ca8");
                             bore = stroke = 2;
                             index = null;
                             valveClearence = 1.05;
@@ -74,6 +79,7 @@ public class ModelBank {
                     },
                             new Piston() {
                         {
+                            partId = UUID.fromString("793d1c18-787c-4520-ac44-97bb95b29f3f");
                             bore = 0;
                             stroke = 2;
                             index = "PP02";

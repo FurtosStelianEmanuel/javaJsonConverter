@@ -64,12 +64,16 @@ public class SerializingTest {
         toReturn.globalIdentifier = buildCarGlobalIdentifier((String) jsonObject.get("globalIdentifier"));
 
         JSONObject engine = (JSONObject) jsonObject.get("engine");
+
+        boolean hasPartId = (String) engine.get("partId") != null && (String) engine.get("partId") != "";
+
         toReturn.engine = new Engine() {
             {
                 hasVvt = (boolean) engine.get("hasVvt");
                 hasInterference = (boolean) engine.get("hasInterference");
                 modelNumber = (int) Long.parseLong(engine.get("modelNumber").toString());
                 timingMethod = (String) engine.get("timingMethod");
+                partId = hasPartId ? UUID.fromString((String) engine.get("partId")) : null;
                 pistons = buildPistons(engine);
             }
         };
@@ -113,6 +117,7 @@ public class SerializingTest {
                 valveClearence = Double.parseDouble(piston.get("valveClearence").toString());
                 temperatureCharacteristics = buildTemperatureCharacteristics((JSONObject) piston.get("temperatureCharacteristics"));
                 index = (String) piston.get("index");
+                partId = UUID.fromString((String) piston.get("partId"));
             }
         };
     }

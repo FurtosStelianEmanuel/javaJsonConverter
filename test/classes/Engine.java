@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Manel
  */
-public class Engine {
+public class Engine extends CarComponent {
 
     public int modelNumber;
     public boolean hasVvt;

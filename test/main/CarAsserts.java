@@ -23,7 +23,7 @@ public class CarAsserts {
         assertEquals(expected.fuelType, actual.fuelType);
         assertEquals(expected.numberOfDoors, actual.numberOfDoors);
         assertEquals(expected.globalIdentifier, actual.globalIdentifier);
-        
+
         assertEngine(expected.engine, actual.engine);
         assertPreviousOwners(expected.previousOwners, actual.previousOwners);
         assertPreviousPrices(expected.previousPrices, actual.previousPrices);
@@ -39,6 +39,7 @@ public class CarAsserts {
         assertEquals(expected.hasVvt, actual.hasVvt);
         assertEquals(expected.modelNumber, actual.modelNumber);
         assertEquals(expected.timingMethod, actual.timingMethod);
+        assertEquals(expected.partId, actual.partId);
 
         assertPistons(expected.pistons, actual.pistons);
     }
@@ -65,6 +66,7 @@ public class CarAsserts {
         assertEquals(expected.stroke, actual.stroke);
         assertEquals(expected.index, actual.index);
         assertEquals(expected.valveClearence, actual.valveClearence, 0.01);
+        assertEquals(expected.partId, actual.partId);
         assertTemperatureCharacteristics(expected.temperatureCharacteristics, actual.temperatureCharacteristics);
     }
 

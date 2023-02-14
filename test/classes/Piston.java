@@ -9,7 +9,7 @@ package classes;
  *
  * @author Manel
  */
-public class Piston {
+public class Piston extends CarComponent {
 
     public int bore, stroke;
     public String index;
